@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>House Price Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+    <div class="container">
+        <div class="card" style="margin-top: 50px">
+            <div class="card-header text-center">
+                <h1>Welcome to Fraud Detection Model</h1>
+            </div>
+            <div class="card-body">
+                <form action="/predict" id="predictForm" method="post">
+                    <div class="row mb-3">
+                        <div class="col-md-6 form-group">
+                            <label for="type" class="form-label"><b>CHOOSE TYPE OF PAYMENT METHOD:</b></label>
+                            <select class="form-select" id="type" name="type" required>
+                                {% for type in type %}
+                                <option value="{{ type }}">{{ type }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="amount" class="form-label"><b>ENTER AMOUNT:</b></label>
+                            <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 form-group">
+                            <label for="oldbalanceOrg" class="form-label"><b>ENTER OLD BALANCE OF SENDER:</b></label>
+                            <input type="text" class="form-control" id="oldbalanceOrg" name="oldbalanceOrg" placeholder="Enter Old Balance Of Sender" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="newbalanceOrig" class="form-label"><b>ENTER NEW BALANCE OF SENDER:</b></label>
+                            <input type="text" class="form-control" id="newbalanceOrig" name="newbalanceOrig" placeholder="Enter New Balance Of Sender" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 form-group">
+                            <label for="oldbalanceDest" class="form-label"><b>ENTER OLD BALANCE OF RECEIVER:</b></label>
+                            <input type="text" class="form-control" id="oldbalanceDest" name="oldbalanceDest" placeholder="Enter Old Balance Of Receiver" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="newbalanceDest" class="form-label"><b>ENTER NEW BALANCE OF RECEIVER:</b></label>
+                            <input type="text" class="form-control" id="newbalanceDest" name="newbalanceDest" placeholder="Enter New Balance Of Receiver" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <button type="submit" class="btn btn-primary form-control">DETECT</button>
+                    </div>
+                </form>
+                <br>
+                <div class="col-md-12 text-center">
+                    <h3><span id="prediction">{{ pred }}</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
